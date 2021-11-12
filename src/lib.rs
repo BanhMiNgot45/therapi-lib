@@ -1,5 +1,6 @@
 mod csv_read;
 mod text_read;
+mod preprocess;
 
 #[cfg(test)]
 mod tests {

@@ -8,27 +8,28 @@ pub mod csv_read {
     use std::string::String;
 
     #[derive(Deserialize)]
-    struct Record {
+    pub struct Record {
+        record_id: i32,
         question_id: i32,
-        question_title: String,
-        question_text: String,
+        pub question_title: String,
+        pub question_text: String,
         question_link: String,
-        topic: String,
+        pub topic: String,
         therapist_info: String,
         therapist_url: String,
-        answer_text: String,
-        upvotes: i32,
-        views: i32,
+        pub answer_text: String,
+        pub upvotes: i32,
+        pub views: i32,
         split: String
     }
     
-    struct Data {
+    pub struct Data {
         url: String,
-        data: Vec<Record>
+        pub data: Vec<Record>
     }
 
     impl Data {
-        fn new(url: String) -> Data {
+        pub fn new(url: String) -> Data {
             Data {
                 url: url,
                 data: Vec::new()
@@ -36,7 +37,7 @@ pub mod csv_read {
         }
 
         #[tokio::main]
-        async fn read_file(&mut self) -> Result<(), Box<dyn Error>> {
+        pub async fn read_file(&mut self) -> Result<(), Box<dyn Error>> {
             let tmp_dir = Builder::new().prefix("tmp").tempdir()?;
             let response = reqwest::get(self.url.to_string()).await?;
             let mut dest = {

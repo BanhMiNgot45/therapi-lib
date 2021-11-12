@@ -6,20 +6,20 @@ pub mod text_read {
     use std::io::copy;
     use std::io::Read;
 
-    struct Data {
+    pub struct Data {
         url: String,
-        data: Vec<String>
+        pub data: Vec<String>
     }
 
     impl Data {
-        fn new(url: String) -> Data {
+        pub fn new(url: String) -> Data {
             Data {
                 url: url,
                 data: Vec::new()
             }
         }
 
-        async fn read_file(&mut self) -> Result<(), Box<dyn Error>> {
+        pub async fn read_file(&mut self) -> Result<(), Box<dyn Error>> {
             let tmp_dir = Builder::new().prefix("tmp").tempdir()?;
             let response = reqwest::get(self.url.to_string()).await?;
             let mut dest = {
