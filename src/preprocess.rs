@@ -2,6 +2,7 @@ pub mod preprocess {
     use crate::csv_read::csv_read;
     use crate::text_read::text_read;
     use std::string::String;
+    use std::collections::HashMap;
 
     pub struct DataRecord {
         question_title: Vec<String>,
@@ -31,6 +32,16 @@ pub mod preprocess {
             v.push(data);
         }
         v
+    }
+
+    pub fn mapping(vec: Vec<String>) -> HashMap<String, i32> {
+        let mut map: HashMap<String, i32> = HashMap::new();
+        let mut i = 0;
+        for s in vec {
+            map.insert(s, i);
+            i += 1;
+        }
+        map
     }
 
     fn remove_noise(s: String, stop: Vec<String>, punc: &Vec<String>) -> Vec<String> {
