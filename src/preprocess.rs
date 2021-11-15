@@ -5,12 +5,12 @@ pub mod preprocess {
     use std::collections::HashMap;
 
     pub struct DataRecord {
-        question_title: Vec<String>,
-        question_text: Vec<String>,
-        topic: String,
-        answer_text: Vec<String>,
-        upvotes: i32,
-        views: i32
+        pub question_title: Vec<String>,
+        pub question_text: Vec<String>,
+        pub topic: String,
+        pub answer_text: Vec<String>,
+        pub upvotes: i32,
+        pub views: i32
     }
 
     pub fn preprocess() -> Vec<DataRecord> {
