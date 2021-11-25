@@ -4,6 +4,8 @@ mod generate_data;
 mod encode_decode;
 mod wordvec;
 mod math;
+mod nn;
+mod k_means;
 
 #[cfg(test)]
 mod tests {

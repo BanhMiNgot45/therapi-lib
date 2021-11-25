@@ -20,10 +20,10 @@ pub mod preprocess {
         let mut v = Vec::new();
         for r in vec {
             let data = DataRecord {
-                question_title: split(r.question_title.to_lowercase()),
-                question_text: split(r.question_text.to_lowercase()),
+                question_title: clean(r.question_title.to_lowercase()),
+                question_text: clean(r.question_text.to_lowercase()),
                 topic: r.topic,
-                answer_text: split(r.answer_text.to_lowercase()),
+                answer_text: clean(r.answer_text.to_lowercase()),
                 upvotes: r.upvotes,
                 views: r.views
             };
@@ -54,11 +54,16 @@ pub mod preprocess {
         map
     }
 
-    fn split(s: String) -> Vec<String> {
-        let mut vec: Vec<String> = Vec::new();
+    fn clean(s: String) -> Vec<String> {
+        let mut dummy: Vec<String> = Vec::new();
         let split_words = s.split(" ").to_owned();
         for word in split_words {
-            vec.push(word.to_owned());
+            dummy.push(word.to_owned());
+        }
+        let mut vec: Vec<String> = Vec::new();
+        for w in dummy {
+            let t = w.replace(|c: char| !c.is_ascii(), "");
+            vec.push(t);
         }
         vec
     }
